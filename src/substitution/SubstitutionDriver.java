@@ -13,17 +13,17 @@ import java.io.*;
  */
 
 public class SubstitutionDriver
-{
+{    
     
-    String filename = "C:\\Users\\Donald\\Documents\\College\\College Materials\\Prose.txt";
-
     public static void main(String args[])throws IOException
     {
         BufferedReader reader;
         FrequencyAnalysis fa;
         IndexOfCoincidence ioc;
+        PolyAlphaCipher paCipher;
         String filename = "C:\\Users\\Donald\\Documents\\College\\College Materials\\Prose.txt";
-        String encrypted, faPlain, faEncrypted, txtPlain;
+        String key = "S3Cr3Tk3y";
+        String encrypted, faPlain, faEncrypted, txtPlain, iocPlain, iocEncrypt, paEncrypt, paDecrypt;
         
         try{
             reader = new BufferedReader(new FileReader(filename));
@@ -37,6 +37,20 @@ public class SubstitutionDriver
             faEncrypted = fa.analyse(encrypted);
             System.out.println("\nEncrypted Frequency Analysis \n" + faEncrypted);
             System.out.println("\nDecrypted message: " + MonoalphabeticCipher.doDecryption(encrypted));
+            
+            ioc = new IndexOfCoincidence();
+            iocPlain = ioc.analyse(txtPlain);
+            iocEncrypt = ioc.analyse(encrypted);
+            System.out.println("\n\nIndex of Coincidence for Plaintext: " + iocPlain);
+            System.out.println("\nIndex of Coincidence after Encryption: " + iocEncrypt);
+            
+            paCipher = new PolyAlphaCipher();
+            paEncrypt = paCipher.encrypt(txtPlain, key);
+            paDecrypt = paCipher.decrypt(paEncrypt, key);
+            System.out.println("\n\nPlaintext Message: " + txtPlain);
+            System.out.println("\nEncrypted Message: " + paEncrypt);
+            System.out.println("\nDecrypted Message: " + paDecrypt);
+            
             
         } 
         

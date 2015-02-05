@@ -13,8 +13,7 @@ package substitution;
 import java.util.*;
 public class IndexOfCoincidence {
  
-    //private Language language;
-    private FrequencyAnalysis ana;
+    public FrequencyAnalysis ana;
     private final String newline = System.getProperty("line.separator");
  
     public String analyse(String code) {
@@ -31,15 +30,18 @@ public class IndexOfCoincidence {
                 + "polyalphabethic cipher, otherwise a monoalphabetic one";
     }
  
-    public double computeKappaRandom() {
+    public double computeKappaRandom() 
+    {
         return 1 / (double) ana.getFrequency().size();
     }
    
-    public int amountOfCharacters(){
+    public int amountOfCharacters()
+    {
         return ana.getFrequency().size();
     }
  
-    public double computeKappaText() {
+    public double computeKappaText() 
+    {
         Map<Character, Integer> frequency = ana.getFrequency();
  
         long n = ana.getSumCount();
